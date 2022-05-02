@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-
 import { CreateStatementUseCase } from './CreateStatementUseCase';
 
-enum OperationType {
+
+export enum OperationType {
   DEPOSIT = 'deposit',
   WITHDRAW = 'withdraw',
 }

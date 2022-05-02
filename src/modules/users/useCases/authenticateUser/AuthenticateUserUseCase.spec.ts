@@ -1,3 +1,4 @@
+import auth from "../../../../config/auth";
 import { InMemoryUsersRepository } from "../../repositories/in-memory/InMemoryUsersRepository";
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
@@ -39,7 +40,7 @@ describe("Authenticate User", () => {
     await expect(
       authenticateUserUseCase.execute({
         email: "henriquemonteiro000@gmail.com",
-        password: "1234",
+        password: "123",
       })
     ).rejects.toEqual(new IncorrectEmailOrPasswordError());
   });
@@ -52,6 +53,8 @@ describe("Authenticate User", () => {
     };
 
     await createUserUseCase.execute(user);
+
+    auth.jwt.secret = user.password;
 
     const result = await authenticateUserUseCase.execute({
       email: user.email,

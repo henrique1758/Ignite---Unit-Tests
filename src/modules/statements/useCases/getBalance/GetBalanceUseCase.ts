@@ -1,15 +1,15 @@
 import { inject, injectable } from "tsyringe";
-
 import { IUsersRepository } from "../../../users/repositories/IUsersRepository";
 import { Statement } from "../../entities/Statement";
 import { IStatementsRepository } from "../../repositories/IStatementsRepository";
 import { GetBalanceError } from "./GetBalanceError";
 
+
 interface IRequest {
   user_id: string;
 }
 
-interface IResponse {
+export interface IResponse {
   statement: Statement[];
   balance: number;
 }
